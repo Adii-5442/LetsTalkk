@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "585142143191",
+    "project_id": "letstalkk-29ee2",
+    "storage_bucket": "letstalkk-29ee2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585142143191:android:5c9871ea6abfee604a0892",
+        "android_client_info": {
+          "package_name": "com.example.letstalkk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585142143191-fvo7lsgcg53fnkcea52jpqru136qk8r3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD37mLoLYHP9ademmK_igYM1qx_dHZN2Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585142143191-fvo7lsgcg53fnkcea52jpqru136qk8r3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

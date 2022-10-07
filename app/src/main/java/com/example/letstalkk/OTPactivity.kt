@@ -3,9 +3,9 @@ package com.example.letstalkk
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class PhoneNumberActivity : AppCompatActivity() {
+class OTPactivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_phone_number3)
+        setContentView(R.layout.activity_otpactivity)
     }
 }
