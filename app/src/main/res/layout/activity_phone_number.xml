@@ -4,125 +4,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneNumberActivity">
+    android:backgroundTint="#F8ECEC"
+    tools:context=".PhoneNumber">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:background="#000000"
+        android:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mobile_auth" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Enter your Phone Number"
-        android:textColor="#090909"
+        android:layout_marginTop="32dp"
+        android:text="Verify Your Phone Number"
+        android:textColor="#161515"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="LetsTalkk will send an SMS on this Phone number for verification "
-        android:textColor="#242222"
-        android:textSize="20sp"
+        android:text="We will send an SMS to your Phone Number for verfication"
+        android:textColor="#555252"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Enter Your Phone Number with Country Code"
+        android:textColor="#0B0B0B"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="32dp"
-        android:gravity="start"
-        android:text="Don't worry ! \n We won't spam \n with annoying messages :)"
-        android:textColor="#5A5367"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="414dp"
-        android:layout_height="487dp"
-        android:layout_marginTop="52dp"
-        app:cardBackgroundColor="#000000"
-        app:cardCornerRadius="40dp"
+        android:id="@+id/cardView3"
+        android:layout_width="285dp"
+        android:layout_height="50dp"
+        android:background="#E9D8D8"
+        app:cardBackgroundColor="#EDE3E3"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="340dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="32dp"
-        android:background="#311212"
-        app:cardBackgroundColor="#8B78D9"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView2">
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.060000002">
 
         <LinearLayout
-            android:layout_width="313dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="#977ADB"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextTextPersonName3"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/textbox"
-                android:backgroundTint="#FFFFFF"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                android:text="Your Country Code+ Phone Number"
-                android:textColor="#676161" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="#F2E4E4"
+                app:boxBackgroundMode="filled"
+                app:hintEnabled="false">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:height="20sp"
+                    android:background="#BDA8DB"
+                    android:elegantTextHeight="false"
+                    android:inputType="phone"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="#4E34C3"
-        android:gravity="center_horizontal"
-        android:rotationX="0"
+        android:id="@+id/button2"
+        android:layout_width="113dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#1D1B1B"
+        android:shadowColor="#242323"
         android:text="Proceed"
-        android:textColor="#F6EBEB"
         app:cornerRadius="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.265"
-        app:rippleColor="#4552CC" />
+        app:layout_constraintEnd_toEndOf="@+id/cardView3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/cardView3"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

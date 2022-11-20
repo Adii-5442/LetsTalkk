@@ -26,7 +26,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PhoneNumberActivity"
+            android:name=".PhoneNumber"
             android:exported="true">
 
 

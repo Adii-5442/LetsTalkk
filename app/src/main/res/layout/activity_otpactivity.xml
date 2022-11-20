@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#F8ECEC"
-    tools:context=".PhoneNumberActivity">
+    android:background="@color/black"
+    tools:context=".PhoneNumber">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="#000000"
-        android:backgroundTint="#000000"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxWidth="512px"
+        android:maxHeight="512px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/otp_verify" />
+        app:srcCompat="@drawable/smartphone" />
 
     <TextView
         android:id="@+id/textView4"
@@ -25,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Verify Your Phone Number"
-        android:textColor="#161515"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
@@ -39,38 +41,41 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Enter the OTP sent on you Mobile number for verification"
-        android:textColor="#555252"
+        android:textColor="#847F7F"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:background="#1F621A"
-        app:cardCornerRadius="20dp"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
-        <com.noobcode.otpview.OTPView
-            android:id="@+id/otpView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:backgroundTint="#B52121"
-            android:text=""
-            android:textColor="@color/black"
-            app:backgroundColor="#CE2D2D"
-            app:borderThickness="6"
-            app:otpLength="6"
-            app:spaceBetween="20" />
+        <in.aabhasjindal.otptextview.OtpTextView
+            android:id="@+id/otp_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            app:height="40dp"
+            app:width="40dp"
+            app:bar_active_color="#01E1FF"
+            app:bar_enabled="true"
+            app:bar_height="2dp"
+            android:background="@color/black"
+            app:otp_box_background="@color/black"
+            app:box_margin="5dp"
+            app:length="6"
+            app:otp="1234"
+            app:bar_success_color="@android:color/holo_green_light"
+            app:otp_text_size="24dp"/>
 
     </androidx.cardview.widget.CardView>
 
