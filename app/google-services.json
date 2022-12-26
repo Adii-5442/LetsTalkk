@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "585142143191",
+    "firebase_url": "https://letstalkk-29ee2-default-rtdb.firebaseio.com",
     "project_id": "letstalkk-29ee2",
     "storage_bucket": "letstalkk-29ee2.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "585142143191-qfchmfne2f2n863ae4vmli4bv85sngog.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.letstalkk",
+            "certificate_hash": "79e260ba491d1b2348b19c12b753b84deecfe9e0"
+          }
+        },
         {
           "client_id": "585142143191-fvo7lsgcg53fnkcea52jpqru136qk8r3.apps.googleusercontent.com",
           "client_type": 3

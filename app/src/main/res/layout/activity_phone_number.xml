@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#F8ECEC"
+    android:backgroundTint="@color/black"
+    android:background="#000000"
     tools:context=".PhoneNumber">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
         android:layout_marginTop="32dp"
         android:background="#000000"
         android:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mobile_auth" />
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/phonenumberinputicon" />
 
     <TextView
         android:id="@+id/textView4"
@@ -25,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Verify Your Phone Number"
-        android:textColor="#161515"
+        android:textColor="#ffff"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
@@ -39,19 +41,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="We will send an SMS to your Phone Number for verfication"
-        android:textColor="#555252"
+        android:textColor="#A59B9B"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Standard Rates may apply"
+        android:textColor="#A59B9B"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.312" />
+
+    <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="Enter Your Phone Number with Country Code"
-        android:textColor="#0B0B0B"
+        android:text="Enter Your Phone Number without Country Code"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -81,20 +97,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="#F2E4E4"
+                android:background="#FFFFFF"
                 app:boxBackgroundMode="filled"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:height="20sp"
-                    android:background="#BDA8DB"
+                    android:background="#212121"
                     android:elegantTextHeight="false"
                     android:inputType="phone"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="18sp"
+                    android:outlineProvider="paddedBounds"
                     android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +121,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/proceedBtn1"
         android:layout_width="113dp"
         android:layout_height="72dp"
         android:layout_marginTop="60dp"

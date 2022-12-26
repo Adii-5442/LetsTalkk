@@ -73,24 +73,37 @@
             app:otp_box_background="@color/black"
             app:box_margin="5dp"
             app:length="6"
-            app:otp="1234"
+            app:otp=""
             app:bar_success_color="@android:color/holo_green_light"
             app:otp_text_size="24dp"/>
 
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/submitOtp"
         android:layout_width="113dp"
         android:layout_height="72dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="76dp"
         android:backgroundTint="#1D1B1B"
         android:shadowColor="#242323"
         android:text="Proceed"
         app:cornerRadius="40dp"
         app:layout_constraintEnd_toEndOf="@+id/cardView4"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/cardView4"
         app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
+    <TextView
+        android:id="@+id/resendOtp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend OTP"
+        android:textColor="#FAF6F6"
+        app:layout_constraintBottom_toTopOf="@+id/submitOtp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/cardView4"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4"
+        app:layout_constraintVertical_bias="0.246" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
