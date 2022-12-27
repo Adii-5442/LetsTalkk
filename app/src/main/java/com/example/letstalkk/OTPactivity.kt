@@ -19,7 +19,7 @@ class OTPactivity : AppCompatActivity() {
 
     private  lateinit var auth: FirebaseAuth
     private lateinit var resendBtn : TextView
-    private var otpTextView: OtpTextView? =null
+    private var otpTextView: OtpTextView? = null
     private lateinit var submitOtp : Button
 
     private lateinit var OTP : String
@@ -39,9 +39,9 @@ class OTPactivity : AppCompatActivity() {
         phoneNumber = intent.getStringExtra("phoneNumber")!!
 
         init()
+
         otpTextView?.otpListener = object :OTPListener{
             override fun onInteractionListener() {
-
             }
             override fun onOTPComplete(otp: String) {
                 proceed(otp,OTP)
@@ -71,7 +71,7 @@ class OTPactivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Succesfully Signed In", "signInWithCredential:success")
                     val intent = Intent(this@OTPactivity,MainActivity::class.java)
-                    Toast.makeText(this@OTPactivity,"Code is correct",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@OTPactivity,"Logged in Successfully !",Toast.LENGTH_LONG).show()
                     startActivity(intent)
 
 
@@ -81,7 +81,7 @@ class OTPactivity : AppCompatActivity() {
                     Log.w("Incorrect Password", "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
-                        Toast.makeText(this@OTPactivity,"Code is incorrect",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@OTPactivity,"Incorrect OTP! Please enter the correct one",Toast.LENGTH_SHORT).show()
                     }
                     // Update UI
                 }

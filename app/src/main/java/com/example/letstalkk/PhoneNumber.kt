@@ -31,6 +31,7 @@ class PhoneNumber : AppCompatActivity() {
             number = phoneNumber.text?.trim().toString()
             if(number.isNotEmpty()){
                 if(number.length == 10){
+                    Toast.makeText(this,"Please wait ..",Toast.LENGTH_LONG).show()
                     number = "+91$number"
                     val options = PhoneAuthOptions.newBuilder(auth)
                         .setPhoneNumber(number) // Phone number to verify
@@ -39,7 +40,6 @@ class PhoneNumber : AppCompatActivity() {
                         .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
                         .build()
                     PhoneAuthProvider.verifyPhoneNumber(options)
-
                 }else{
                     Toast.makeText(this,"Please enter a valid number ",Toast.LENGTH_SHORT).show()
                 }
@@ -47,7 +47,6 @@ class PhoneNumber : AppCompatActivity() {
                 Toast.makeText(this,"Please enter a valid number, it can't be blank like you ",Toast.LENGTH_SHORT).show()
             }
         }
-
     }
     private fun init(){
         phoneNumber = findViewById<TextInputEditText>(R.id.phone_input)
@@ -67,7 +66,6 @@ class PhoneNumber : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Toast.makeText(this,"Authentication Successful",Toast.LENGTH_SHORT).show()
-
                     val user = task.result?.user
                 } else {
                     // Sign in failed, display a message and update the UI
@@ -79,7 +77,6 @@ class PhoneNumber : AppCompatActivity() {
                 }
             }
     }
-
     private fun sendToMain(){
         startActivity(Intent(this , MainActivity::class.java))
     }
@@ -120,6 +117,7 @@ class PhoneNumber : AppCompatActivity() {
             // now need to ask the user to enter the code and then construct a credential
             // by combining the code with a verification ID.
             Log.d("Tag", "onCodeSent:$verificationId")
+            Toast.makeText(this@PhoneNumber,"Verification Code has been sent on your mobile number",Toast.LENGTH_SHORT).show()
             val intent = Intent(this@PhoneNumber,OTPactivity::class.java)
             intent.putExtra("OTP",verificationId)
             intent.putExtra("resendToken",token)
