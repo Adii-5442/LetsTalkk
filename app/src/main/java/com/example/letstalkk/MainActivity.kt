@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
     private lateinit var signOutBtn:Button
+    private  lateinit var gToAct : Button
 
 
 
@@ -25,5 +26,10 @@ class MainActivity : AppCompatActivity() {
             auth.signOut()
             startActivity(Intent(this,PhoneNumber::class.java))
         }
+        gToAct = findViewById(R.id.goToAct)
+        gToAct.setOnClickListener {
+            startActivity(Intent(this,EditProfile::class.java))
+        }
+
     }
 }

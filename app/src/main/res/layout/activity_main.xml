@@ -32,4 +32,14 @@
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="#A64444" />
 
+    <Button
+        android:id="@+id/goToAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go To Desired Activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signOutBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
