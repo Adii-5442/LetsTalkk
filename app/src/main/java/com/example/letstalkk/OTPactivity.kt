@@ -70,7 +70,7 @@ class OTPactivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("Succesfully Signed In", "signInWithCredential:success")
-                    val intent = Intent(this@OTPactivity,MainActivity::class.java)
+                    val intent = Intent(this@OTPactivity,initialLoginProfileSetup::class.java)
                     Toast.makeText(this@OTPactivity,"Logged in Successfully !",Toast.LENGTH_LONG).show()
                     startActivity(intent)
 

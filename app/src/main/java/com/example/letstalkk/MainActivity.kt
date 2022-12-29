@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
         gToAct = findViewById(R.id.goToAct)
         gToAct.setOnClickListener {
-//            startActivity(Intent(this,EditProfile::class.java)) //use it when edit profile is created
+            startActivity(Intent(this,MainActivity::class.java)) //use it when edit profile is created
         }
 
     }
