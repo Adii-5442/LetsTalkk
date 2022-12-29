@@ -19,9 +19,5 @@
             android:textSize="20dp"
             android:text="Hey There !"
             android:textColor="@color/red"/>
-
     </LinearLayout>
-
-
-
 </androidx.core.widget.NestedScrollView>
