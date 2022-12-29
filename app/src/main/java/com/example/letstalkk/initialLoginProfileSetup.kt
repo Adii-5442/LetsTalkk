@@ -10,6 +10,7 @@ import android.widget.*
 import android.app.DatePickerDialog
 import java.text.SimpleDateFormat
 import android.widget.DatePicker
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
 class initialLoginProfileSetup : AppCompatActivity() {
@@ -20,9 +21,11 @@ class initialLoginProfileSetup : AppCompatActivity() {
     private lateinit var eMail : EditText
     private lateinit var genderSpinner:Spinner
     private lateinit var dateOfBirth : Button
+    private lateinit var profilePic : FloatingActionButton
+    private lateinit var finalButton : FloatingActionButton
     private var cal = Calendar.getInstance()
 
-
+    //Function to update button to display the chosen birth date by the user
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
@@ -45,11 +48,14 @@ class initialLoginProfileSetup : AppCompatActivity() {
         eMail=findViewById<EditText>(R.id.editTextEmail)
         dateOfBirth=findViewById<Button>(R.id.dateOfBirth)
         genderSpinner = findViewById<Spinner>(R.id.genderSelect)
+        profilePic=findViewById<FloatingActionButton>(R.id.editProfilePic)
+        finalButton=findViewById<FloatingActionButton>(R.id.finalizeProfile)
 
 
-        //Pre defined Variable in values/string folder
+        //Pre defined Variables
         val genders=resources.getStringArray(R.array.Genders)
         val defaultDate="__/__/___"
+
 
         //Initialize Spinner with gender array
         if (genderSpinner != null) {

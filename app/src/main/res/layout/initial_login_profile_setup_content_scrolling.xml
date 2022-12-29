@@ -148,13 +148,14 @@
     </LinearLayout>
     <Spinner
         android:id="@+id/genderSelect"
-        android:layout_width="199dp"
+        android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="10dp"
         android:popupElevation="25dp"
         android:popupBackground="#1E2C2C"
-        android:background="#37A1A1" />
+        android:background="#3E37A1A1"
+        />
 
 
 

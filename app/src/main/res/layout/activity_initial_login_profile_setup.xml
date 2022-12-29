@@ -24,35 +24,38 @@
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.LetsTalkk.PopupOverlay" />
+                android:layout_height="match_parent"
+                android:src="@drawable/avatar"
+                />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/initial_login_profile_setup_content_scrolling" />
+    <include
+        android:id="@+id/scrollPage"
+        layout="@layout/initial_login_profile_setup_content_scrolling" />
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="542dp">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/editProfilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:backgroundTint="@color/teal_200"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_menu_report_image" />
 
-        <DatePicker
-            android:layout_width="324dp"
-            android:layout_height="389dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98"
-            android:visibility="invisible"
-            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/finalizeProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/scrollPage"
+        android:text="Get Started!"
+        android:layout_margin="30dp"
+        app:layout_anchorGravity="bottom|right" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
