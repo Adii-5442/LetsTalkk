@@ -1,5 +1,7 @@
 package com.example.letstalkk
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -9,18 +11,20 @@ import com.example.letstalkk.databinding.ActivityEditProfileBinding
 
 class EditProfile : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEditProfileBinding
+    private lateinit var editPicture : FloatingActionButton
+    private lateinit var pictueToolBar : CollapsingToolbarLayout
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityEditProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        setContentView(R.layout.activity_edit_profile)
         setSupportActionBar(findViewById(R.id.toolbar))
-        binding.toolbarLayout.title = title
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+        pictueToolBar = findViewById(R.id.toolbar_layout)
+        editPicture = findViewById(R.id.editPic)
+        editPicture.setOnClickListener { view ->
+           pictueToolBar.background = getDrawable(R.drawable.couple)
+            Snackbar.make(view, "Pick a nice Picture of yours", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }
