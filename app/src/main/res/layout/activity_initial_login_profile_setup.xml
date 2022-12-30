@@ -47,15 +47,13 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
 
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/finalizeProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@+id/scrollPage"
         android:text="Get Started!"
         android:layout_margin="30dp"
+        app:layout_anchor="@+id/scrollPage"
         app:layout_anchorGravity="bottom|right" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

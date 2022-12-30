@@ -157,7 +157,5 @@
         android:background="#3E37A1A1"
         />
 
-
-
 </LinearLayout>
 </androidx.core.widget.NestedScrollView>
