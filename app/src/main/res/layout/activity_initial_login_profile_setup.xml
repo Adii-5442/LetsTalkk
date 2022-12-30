@@ -25,6 +25,7 @@
             app:toolbarId="@+id/toolbar">
 
             <ImageView
+                android:id="@+id/profilePicShow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/avatar"
@@ -46,6 +47,14 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:id="@+id/recyclerView"
+        tools:listitem="@layout/image_item"/>
+
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/finalizeProfile"
