@@ -36,6 +36,8 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
     private var cal = Calendar.getInstance()
     private var arraylist = ArrayList<Uri>();
 
+    var arr = arrayListOf<String>(android.Manifest.permission.CAMERA,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+
     //Function to update button to display the chosen birth date by the user
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
@@ -121,14 +123,9 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
             else{
                 EasyPermissions.requestPermissions(
                     this,
-                    "Bhai permission dede camera ki",
+                    "Bhai permission dede camera aur storage ki",
                     100,
-                    android.Manifest.permission.CAMERA
-                );
-                EasyPermissions.requestPermissions(
-                    this,
-                    "Bhai permission dede storage ki",
-                    100,
+                    android.Manifest.permission.CAMERA,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE
                 );
             }
@@ -188,7 +185,7 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
     private fun imagePicker(){
         FilePickerBuilder.instance
             .setActivityTitle("Select Image")
-            .setSpan(FilePickerConst.SPAN_TYPE.FOLDER_SPAN,3)
+            .setSpan(FilePickerConst.SPAN_TYPE.FOLDER_SPAN,4)
             .setSpan(FilePickerConst.SPAN_TYPE.DETAIL_SPAN,4)
             .setMaxCount(1)
             .setSelectedFiles(arraylist)
