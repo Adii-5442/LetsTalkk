@@ -5,157 +5,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".initialLoginProfileSetup"
+    tools:context=".InitialLoginProfileSetup"
     android:background="#1E2C2C"
     tools:showIn="@layout/activity_initial_login_profile_setup">
 
 <!-- Scrollable -->
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!-- Full Name -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:textSize="20sp"
-        android:textColor="@color/teal_700"
-        android:text="Full Name"
-        android:background="@color/transparent"
-        />
-    <EditText
-        android:id="@+id/editTextFullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:textSize="20sp"
-        android:ems="15"
-        android:textColor="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        android:inputType="textPersonName"
-        android:hint="Full name"
-        android:textColorHint="@color/hint_colour"
-        android:autofillHints="name"
-        android:singleLine="true" />
-
-    <!-- UserName -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:textSize="20sp"
-        android:textColor="@color/teal_700"
-        android:text="Username"
-        android:background="@color/transparent"
-        />
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Full Name -->
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="\@"
-            android:textColor="@color/teal_700"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"
-            />
-        <EditText
-            android:id="@+id/editTextUserName"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:textSize="20sp"
-            android:ems="15"
+            android:layout_marginTop="20dp"
+            android:background="@color/transparent"
+            android:text="Full Name"
             android:textColor="@color/teal_700"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:autofillHints="name"
             android:backgroundTint="@color/teal_700"
+            android:ems="15"
+            android:hint="Full name"
             android:inputType="textPersonName"
-            android:hint="Something cool"
-            android:autofillHints="username"
+            android:singleLine="true"
+            android:textColor="@color/teal_700"
             android:textColorHint="@color/hint_colour"
-            android:singleLine="true" />
-    </LinearLayout>
+            android:textSize="20sp" />
 
-    <!-- E-mail -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:text="E-mail"
-        android:layout_marginLeft="15dp"
-        android:textColor="@color/teal_700"
-        />
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
-        android:textSize="20sp"
-        android:ems="15"
-        android:textColor="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        android:inputType="textPersonName"
-        android:hint="E-mail"
-        android:textColorHint="@color/hint_colour"
-        android:singleLine="true" />
-
-    <!-- Date of Birth -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <!-- UserName -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date of Birth"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/transparent"
+            android:text="Username"
             android:textColor="@color/teal_700"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:layout_marginLeft="15dp"
-            />
-        <Button
-            android:id="@+id/dateOfBirth"
+            android:textSize="20sp" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="21/12/2022"
-            android:textSize="17sp"
-            android:textColor="@color/teal_700"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ripple_button"/>
-    </LinearLayout>
+            android:orientation="horizontal">
 
-    <!-- Gender -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="\@"
+                android:textColor="@color/teal_700"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editTextUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:autofillHints="username"
+                android:backgroundTint="@color/teal_700"
+                android:ems="15"
+                android:hint="Something cool"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:textColor="@color/teal_700"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- E-mail -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
-            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:text="E-mail"
             android:textColor="@color/teal_700"
-            android:text="Gender"
-            android:background="@color/transparent"
-            />
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:backgroundTint="@color/teal_700"
+            android:ems="15"
+            android:hint="E-mail"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:textColor="@color/teal_700"
+            android:textColorHint="@color/hint_colour"
+            android:textSize="20sp" />
+
+        <!-- Date of Birth -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Date of Birth"
+                android:textColor="@color/teal_700"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/dateOfBirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ripple_button"
+                android:text="21/12/2022"
+                android:textColor="@color/teal_700"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- Gender -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent"
+                android:text="Gender"
+                android:textColor="@color/teal_700"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/genderSelect"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="10dp"
+            android:background="#3E37A1A1"
+            android:popupBackground="#1E2C2C"
+            android:popupElevation="25dp" />
 
     </LinearLayout>
-    <Spinner
-        android:id="@+id/genderSelect"
-        android:layout_width="150dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="10dp"
-        android:popupElevation="25dp"
-        android:popupBackground="#1E2C2C"
-        android:background="#3E37A1A1"
-        />
-
-</LinearLayout>
 </androidx.core.widget.NestedScrollView>

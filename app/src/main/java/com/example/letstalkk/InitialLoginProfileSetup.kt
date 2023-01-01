@@ -9,20 +9,15 @@ import android.view.View
 import android.widget.*
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.net.Uri
 import java.text.SimpleDateFormat
-import android.widget.DatePicker
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import droidninja.filepicker.FilePickerBuilder
-import droidninja.filepicker.FilePickerConst
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
 
-class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionCallbacks {
+class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionCallbacks {
 
     private lateinit var binding: ActivityInitialLoginProfileSetupBinding
     private lateinit var fullName: EditText
@@ -30,19 +25,17 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
     private lateinit var eMail : EditText
     private lateinit var genderSpinner:Spinner
     private lateinit var dateOfBirth : Button
-    private lateinit var profilePic : FloatingActionButton
+    private lateinit var profilePicGalleryButton : FloatingActionButton
+    private lateinit var profilePicCameraButton:FloatingActionButton
+    private lateinit var profilePicDisplay: ImageView
     private lateinit var finalButton : ExtendedFloatingActionButton
-    private lateinit var recyclerView: RecyclerView
     private var cal = Calendar.getInstance()
-    private var arraylist = ArrayList<Uri>();
-
-    var arr = arrayListOf<String>(android.Manifest.permission.CAMERA,android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
     //Function to update button to display the chosen birth date by the user
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        dateOfBirth.text = sdf.format(cal.getTime())
+        dateOfBirth.text = sdf.format(cal.time)
     }
 
 
@@ -61,14 +54,17 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         eMail=findViewById<EditText>(R.id.editTextEmail)
         dateOfBirth=findViewById<Button>(R.id.dateOfBirth)
         genderSpinner = findViewById<Spinner>(R.id.genderSelect)
-        profilePic=findViewById<FloatingActionButton>(R.id.editProfilePic)
+
+        profilePicGalleryButton=findViewById<FloatingActionButton>(R.id.editProfilePicGallery)
+        profilePicCameraButton=findViewById<FloatingActionButton>(R.id.editProfilePicCamera)
+        profilePicDisplay=findViewById<ImageView>(R.id.profilePicShow)
+
         finalButton=findViewById<ExtendedFloatingActionButton>(R.id.finalizeProfile)
-        recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
 
 
         //Pre defined Variables
         val genders=resources.getStringArray(R.array.Genders)
-        val defaultDate="__/__/___"
+        val defaultDate="__/__/____"
 
 
         //Initialize Spinner with gender array
@@ -92,44 +88,68 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
         //Date picker
         dateOfBirth.text=defaultDate
-        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
+        val dateSetListener =
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 //This is where we can extract the user filled date of birth
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
             }
+        dateOfBirth.setOnClickListener {
+            DatePickerDialog(
+                this@InitialLoginProfileSetup,
+                dateSetListener,
+                // Sets DatePickerDialog to point to previous date which was set to cal variable
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
-        dateOfBirth.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                DatePickerDialog(this@initialLoginProfileSetup,
-                    dateSetListener,
-                    // Sets DatePickerDialog to point to previous date which was set to cal variable
-                    cal.get(Calendar.YEAR),
-                    cal.get(Calendar.MONTH),
-                    cal.get(Calendar.DAY_OF_MONTH)).show()
-            }
-
-        })
 
 
         //Image Picker
-        profilePic.setOnClickListener({
-            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.CAMERA) and EasyPermissions.hasPermissions(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-                imagePicker();
+
+        profilePicGalleryButton.setOnClickListener{
+            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.CAMERA)){
+                pickImageFromGallery()
             }
             else{
                 EasyPermissions.requestPermissions(
                     this,
-                    "Bhai permission dede camera aur storage ki",
-                    100,
-                    android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
-                );
+                    "The App needs permission to use camera.",
+                    101,
+                    android.Manifest.permission.CAMERA
+                )
             }
-        })
+        }
+
+        profilePicCameraButton.setOnClickListener {
+            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                pickImageFromCamera()
+            }
+            else{
+                EasyPermissions.requestPermissions(
+                    this,
+                    "The App needs permission to access storage.",
+                    100,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+            }
+        }
+    }
+
+
+    private fun pickImageFromGallery(){
+
+        ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).crop().maxResultSize(400,400).start()
+
+    }
+
+    private fun pickImageFromCamera(){
+
+        ImagePicker.with(this).cameraOnly().crop().start()
+
     }
 
     override fun onRequestPermissionsResult(
@@ -141,55 +161,36 @@ class initialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this)
     }
 
+
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-        if (requestCode==100 && perms.size==2){
-
-
-            imagePicker()
+        if (requestCode==100){
+            //Means permission has been granted for gallery
+            pickImageFromGallery()
+        }
+        else if (requestCode==101){
+            //Means permission has been granted for camera
+            pickImageFromCamera()
         }
     }
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
 
         if(EasyPermissions.somePermissionPermanentlyDenied(this,perms)){
-
-
             AppSettingsDialog.Builder(this).build().show()
         }else{
-
-            Toast.makeText(applicationContext,"Permission Demied",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,"Permission Denied",Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if(resultCode== RESULT_OK&&data!=null){
-
-
-            if(requestCode==FilePickerConst.REQUEST_CODE_PHOTO){
-
-
-                arraylist= data.getParcelableArrayListExtra<Uri>(FilePickerConst.KEY_SELECTED_MEDIA)!!
-
-
-                recyclerView.layoutManager=LinearLayoutManager(this)
-
-                recyclerView.adapter= FilePickerClass(arraylist)
-            }
+                profilePicDisplay.setImageURI(data?.data)
         }
     }
-
-
-
-    private fun imagePicker(){
-        FilePickerBuilder.instance
-            .setActivityTitle("Select Image")
-            .setSpan(FilePickerConst.SPAN_TYPE.FOLDER_SPAN,4)
-            .setSpan(FilePickerConst.SPAN_TYPE.DETAIL_SPAN,4)
-            .setMaxCount(1)
-            .setSelectedFiles(arraylist)
-            .setActivityTheme(R.style.FilePickerTheme)
-            .pickPhoto(this);
-    }
 }
+
+
+
+
+

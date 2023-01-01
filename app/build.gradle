@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.example.letstalkk'
-    compileSdk 32
+    compileSdk 33
 
     buildFeatures {
         viewBinding true
@@ -53,9 +53,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
 
     //Image picker Libraries
-    implementation('pub.devrel:easypermissions:3.0.0')
-    implementation('com.droidninja:filepicker:2.2.5')
-    implementation('com.github.bumptech.glide:glide:4.13.0')
-    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3')
-
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.github.florent37:inline-activity-result-kotlin:1.0.4'
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
 }
