@@ -21,11 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
-            android:background="@color/transparent"
             android:text="Full Name"
             android:textColor="@color/teal_700"
             android:textSize="20sp" />
-
         <EditText
             android:id="@+id/editTextFullName"
             android:layout_width="match_parent"
@@ -40,13 +38,18 @@
             android:textColor="@color/teal_700"
             android:textColorHint="@color/hint_colour"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/fullNameSanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:layout_marginStart="15dp"/>
 
         <!-- UserName -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
             android:background="@color/transparent"
             android:text="Username"
             android:textColor="@color/teal_700"
@@ -80,13 +83,18 @@
                 android:textColorHint="@color/hint_colour"
                 android:textSize="20sp" />
         </LinearLayout>
+        <TextView
+            android:id="@+id/userNameSanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:layout_marginStart="15dp"/>
 
         <!-- E-mail -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
             android:text="E-mail"
             android:textColor="@color/teal_700"
             android:textSize="20sp" />
@@ -104,6 +112,12 @@
             android:textColor="@color/teal_700"
             android:textColorHint="@color/hint_colour"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/eMailSanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:layout_marginStart="15dp"/>
 
         <!-- Date of Birth -->
         <LinearLayout
@@ -114,7 +128,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
                 android:text="Date of Birth"
                 android:textColor="@color/teal_700"
                 android:textSize="20sp" />

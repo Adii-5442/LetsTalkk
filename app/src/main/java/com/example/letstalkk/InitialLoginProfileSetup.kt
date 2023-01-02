@@ -45,8 +45,6 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         binding = ActivityInitialLoginProfileSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        binding.toolbarLayout.title = "Profile Setup"
 
         //Input Variables
         fullName=findViewById<EditText>(R.id.editTextFullName)
@@ -137,7 +135,37 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                 )
             }
         }
+
+        //Check Data Sanity
+        finalButton.setOnClickListener{
+            /*if(fullName.text.toString().isEmpty()) {
+                findViewById<TextView>(R.id.fullNameSanity).text="This field cannot be empty"
+            }else if(!fullName.text.toString().matches("[a-zA-Z.? ]*".toRegex())){
+                findViewById<TextView>(R.id.fullNameSanity).text="This should contain alphabetic characters only"
+            }
+            else{
+                findViewById<TextView>(R.id.fullNameSanity).text=""
+            }*/
+            SanityCheck(
+                arrayOf(
+                    findViewById(R.id.fullNameSanity),
+                    findViewById(R.id.userNameSanity),
+                    findViewById(R.id.eMailSanity)
+                ),
+                arrayOf(
+                    findViewById(R.id.editTextFullName),
+                    findViewById(R.id.editTextUserName),
+                    findViewById(R.id.editTextEmail)
+                ),
+                arrayOf(
+                    RegexConstants.ALPHABETIC,
+                    RegexConstants.ALPHANUMERIC_LOWERCASE,
+                    RegexConstants.DOMAIN
+                )
+            ).checkSanity()
+        }
     }
+
 
 
     private fun pickImageFromGallery(){
