@@ -8,6 +8,7 @@
 
     <!-- Gender array for Spinner-->
     <string-array name="Genders">
+        <item>--Select--</item>
         <item>Male</item>
         <item>Female</item>
         <item>Non-Binary</item>

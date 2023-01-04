@@ -137,12 +137,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/ripple_button"
-                android:text="21/12/2022"
                 android:textColor="@color/teal_700"
                 android:textSize="17sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/dateOfBirthSanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:layout_marginStart="15dp"/>
 
         <!-- Gender -->
         <LinearLayout
@@ -154,7 +159,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
                 android:background="@color/transparent"
                 android:text="Gender"
                 android:textColor="@color/teal_700"
@@ -171,6 +175,14 @@
             android:background="#3E37A1A1"
             android:popupBackground="#1E2C2C"
             android:popupElevation="25dp" />
+
+        <TextView
+            android:id="@+id/genderSanity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/red"
+            android:layout_marginStart="15dp"/>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

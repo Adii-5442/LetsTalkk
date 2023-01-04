@@ -29,13 +29,15 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
     private lateinit var profilePicCameraButton:FloatingActionButton
     private lateinit var profilePicDisplay: ImageView
     private lateinit var finalButton : ExtendedFloatingActionButton
-    private var cal = Calendar.getInstance()
+
+    private var selectedDate : Calendar = Calendar.getInstance()
+    private lateinit var selectedGender:String
 
     //Function to update button to display the chosen birth date by the user
     private fun updateDateInView() {
         val myFormat = "dd/MM/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        dateOfBirth.text = sdf.format(cal.time)
+        val sdf = SimpleDateFormat(myFormat)
+        dateOfBirth.text = sdf.format(selectedDate.time)
     }
 
 
@@ -63,6 +65,7 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         //Pre defined Variables
         val genders=resources.getStringArray(R.array.Genders)
         val defaultDate="__/__/____"
+        selectedGender=genders[0]
 
 
         //Initialize Spinner with gender array
@@ -77,9 +80,11 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                                             view: View, position: Int, id: Long) {
                     //position holds the index of the selected element in gender array
                     //When a gender is Selected, use genders[position] to fetch the selected gender by user
+                    selectedGender=genders[position]
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
+                    selectedGender=genders[0]
                 }
             }
         }
@@ -89,9 +94,9 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 //This is where we can extract the user filled date of birth
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                selectedDate.set(Calendar.YEAR, year)
+                selectedDate.set(Calendar.MONTH, monthOfYear)
+                selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 updateDateInView()
             }
         dateOfBirth.setOnClickListener {
@@ -99,9 +104,9 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                 this@InitialLoginProfileSetup,
                 dateSetListener,
                 // Sets DatePickerDialog to point to previous date which was set to cal variable
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)
+                selectedDate.get(Calendar.YEAR),
+                selectedDate.get(Calendar.MONTH),
+                selectedDate.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
 
@@ -146,7 +151,7 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
             else{
                 findViewById<TextView>(R.id.fullNameSanity).text=""
             }*/
-            SanityCheck(
+            if(!SanityCheckTexts(
                 arrayOf(
                     findViewById(R.id.fullNameSanity),
                     findViewById(R.id.userNameSanity),
@@ -160,9 +165,15 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                 arrayOf(
                     RegexConstants.ALPHABETIC,
                     RegexConstants.ALPHANUMERIC_LOWERCASE,
-                    RegexConstants.DOMAIN
-                )
-            ).checkSanity()
+                    RegexConstants.EMAIL_DOMAIN
+                ),
+                    selectedDate,
+                    dateOfBirth,
+                    findViewById(R.id.dateOfBirthSanity),
+                    selectedGender,
+                    findViewById(R.id.genderSanity)
+            ).checkSanity())
+                return@setOnClickListener
         }
     }
 
