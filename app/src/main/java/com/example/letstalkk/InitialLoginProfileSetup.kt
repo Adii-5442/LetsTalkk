@@ -64,7 +64,7 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
         //Pre defined Variables
         val genders=resources.getStringArray(R.array.Genders)
-        val defaultDate="__/__/____"
+        val defaultDate="dd/mm/yyyy"
         selectedGender=genders[0]
 
 
@@ -143,14 +143,6 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
         //Check Data Sanity
         finalButton.setOnClickListener{
-            /*if(fullName.text.toString().isEmpty()) {
-                findViewById<TextView>(R.id.fullNameSanity).text="This field cannot be empty"
-            }else if(!fullName.text.toString().matches("[a-zA-Z.? ]*".toRegex())){
-                findViewById<TextView>(R.id.fullNameSanity).text="This should contain alphabetic characters only"
-            }
-            else{
-                findViewById<TextView>(R.id.fullNameSanity).text=""
-            }*/
             if(!SanityCheckTexts(
                 arrayOf(
                     findViewById(R.id.fullNameSanity),
@@ -174,6 +166,8 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                     findViewById(R.id.genderSanity)
             ).checkSanity())
                 return@setOnClickListener
+
+            //Rest of the code
         }
     }
 
