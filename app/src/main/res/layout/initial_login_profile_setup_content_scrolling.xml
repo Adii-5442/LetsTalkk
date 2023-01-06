@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".InitialLoginProfileSetup"
-    android:background="#1E2C2C"
+    android:background="@color/commonBackground"
     tools:showIn="@layout/activity_initial_login_profile_setup">
 
 <!-- Scrollable -->
@@ -94,7 +94,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:text="E-mail"
             android:textColor="@color/teal_700"
             android:textSize="20sp" />
@@ -103,7 +103,7 @@
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
             android:backgroundTint="@color/teal_700"
             android:ems="15"
             android:hint="E-mail"
@@ -111,7 +111,8 @@
             android:singleLine="true"
             android:textColor="@color/teal_700"
             android:textColorHint="@color/hint_colour"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="TextFields" />
         <TextView
             android:id="@+id/eMailSanity"
             android:layout_width="wrap_content"
@@ -127,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:text="Date of Birth"
                 android:textColor="@color/teal_700"
                 android:textSize="20sp" />
@@ -136,7 +137,7 @@
                 android:id="@+id/dateOfBirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/ripple_button"
                 android:textColor="@color/teal_700"
                 android:textSize="17sp" />
@@ -158,7 +159,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:background="@color/transparent"
                 android:text="Gender"
                 android:textColor="@color/teal_700"
@@ -170,7 +171,7 @@
             android:id="@+id/genderSelect"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="10dp"
             android:background="#3E37A1A1"
             android:popupBackground="#1E2C2C"

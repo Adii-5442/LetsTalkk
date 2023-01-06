@@ -4,7 +4,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.text.SimpleDateFormat
 import java.util.Calendar
 
 class IncorrectLengthInputsException(message :String):Exception(message)
@@ -99,14 +98,13 @@ class SanityCheckTexts(
     }
 
     private fun dateCheck(display: TextView):Boolean{
-        val myFormat = "dd/MM/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat)
+        val myFormat = "dd/MM/yyyy"// mention the format you need
         val currentDate :Calendar=Calendar.getInstance()
-        if(selectedDate.compareTo(currentDate)>0){
+        if(selectedDate > currentDate){
             display.text="No time travellers allowed."
             return false
         }
-        if(dateButton.text=="__/__/____"){
+        if(dateButton.text==myFormat){
             display.text="This field cannot be empty."
             return false
         }

@@ -35,8 +35,8 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
     //Function to update button to display the chosen birth date by the user
     private fun updateDateInView() {
-        val myFormat = "dd/MM/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat)
+        val myFormat = getString(R.string.dateFormat) // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
         dateOfBirth.text = sdf.format(selectedDate.time)
     }
 
@@ -49,50 +49,48 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
 
         //Input Variables
-        fullName=findViewById<EditText>(R.id.editTextFullName)
-        userName=findViewById<EditText>(R.id.editTextUserName)
-        eMail=findViewById<EditText>(R.id.editTextEmail)
-        dateOfBirth=findViewById<Button>(R.id.dateOfBirth)
-        genderSpinner = findViewById<Spinner>(R.id.genderSelect)
+        fullName=findViewById(R.id.editTextFullName)
+        userName=findViewById(R.id.editTextUserName)
+        eMail=findViewById(R.id.editTextEmail)
+        dateOfBirth=findViewById(R.id.dateOfBirth)
+        genderSpinner = findViewById(R.id.genderSelect)
 
-        profilePicGalleryButton=findViewById<FloatingActionButton>(R.id.editProfilePicGallery)
-        profilePicCameraButton=findViewById<FloatingActionButton>(R.id.editProfilePicCamera)
-        profilePicDisplay=findViewById<ImageView>(R.id.profilePicShow)
+        profilePicGalleryButton=findViewById(R.id.editProfilePicGallery)
+        profilePicCameraButton=findViewById(R.id.editProfilePicCamera)
+        profilePicDisplay=findViewById(R.id.profilePicShow)
 
-        finalButton=findViewById<ExtendedFloatingActionButton>(R.id.finalizeProfile)
+        finalButton=findViewById(R.id.finalizeProfile)
 
 
         //Pre defined Variables
         val genders=resources.getStringArray(R.array.Genders)
-        val defaultDate="dd/mm/yyyy"
+        val defaultDate=getString(R.string.dateFormat)
         selectedGender=genders[0]
 
 
         //Initialize Spinner with gender array
-        if (genderSpinner != null) {
-            val adapter = ArrayAdapter(this,
-                R.layout.spinner_item, genders)
-            genderSpinner.adapter = adapter
+        val adapter = ArrayAdapter(this,
+            R.layout.spinner_item, genders)
+        genderSpinner.adapter = adapter
 
-            genderSpinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>,
-                                            view: View, position: Int, id: Long) {
-                    //position holds the index of the selected element in gender array
-                    //When a gender is Selected, use genders[position] to fetch the selected gender by user
-                    selectedGender=genders[position]
-                }
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
-                    selectedGender=genders[0]
-                }
+        genderSpinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>,
+                                        view: View, position: Int, id: Long) {
+                //position holds the index of the selected element in gender array
+                //When a gender is Selected, use genders[position] to fetch the selected gender by user
+                selectedGender=genders[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+                selectedGender=genders[0]
             }
         }
 
         //Date picker
         dateOfBirth.text=defaultDate
         val dateSetListener =
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 //This is where we can extract the user filled date of birth
                 selectedDate.set(Calendar.YEAR, year)
                 selectedDate.set(Calendar.MONTH, monthOfYear)
@@ -112,9 +110,8 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
 
         //Image Picker
-
         profilePicGalleryButton.setOnClickListener{
-            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.CAMERA)){
+            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
                 pickImageFromGallery()
             }
             else{
@@ -122,13 +119,13 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                     this,
                     "The App needs permission to use camera.",
                     101,
-                    android.Manifest.permission.CAMERA
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE
                 )
             }
         }
 
         profilePicCameraButton.setOnClickListener {
-            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+            if (EasyPermissions.hasPermissions(this,android.Manifest.permission.CAMERA)){
                 pickImageFromCamera()
             }
             else{
@@ -136,7 +133,7 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                     this,
                     "The App needs permission to access storage.",
                     100,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    android.Manifest.permission.CAMERA
                 )
             }
         }
@@ -159,11 +156,11 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                     RegexConstants.ALPHANUMERIC_LOWERCASE,
                     RegexConstants.EMAIL_DOMAIN
                 ),
-                    selectedDate,
-                    dateOfBirth,
-                    findViewById(R.id.dateOfBirthSanity),
-                    selectedGender,
-                    findViewById(R.id.genderSanity)
+                    selectedDate,                          //Calendar variable
+                    dateOfBirth,                           //Button to alter its text
+                    findViewById(R.id.dateOfBirthSanity),  //Warning TextView
+                    selectedGender,                        //String holding selected gender
+                    findViewById(R.id.genderSanity)        //Warning TextView
             ).checkSanity())
                 return@setOnClickListener
 
@@ -174,15 +171,11 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
 
     private fun pickImageFromGallery(){
-
         ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).crop().maxResultSize(400,400).start()
-
     }
 
     private fun pickImageFromCamera(){
-
         ImagePicker.with(this).cameraOnly().crop().start()
-
     }
 
     override fun onRequestPermissionsResult(
@@ -215,10 +208,12 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         }
     }
 
+    @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode== RESULT_OK&&data!=null){
-                profilePicDisplay.setImageURI(data?.data)
+                profilePicDisplay.setImageURI(data.data)
         }
     }
 }
