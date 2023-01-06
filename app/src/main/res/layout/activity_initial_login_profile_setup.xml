@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".initialLoginProfileSetup">
+    tools:context=".InitialLoginProfileSetup">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:fitsSystemWindows="false"
+        android:layout_height="400dp"
+        android:fitsSystemWindows="true"
         android:theme="@style/Theme.LetsTalkk.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -24,13 +24,23 @@
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:src="@drawable/couple"
-                android:scaleType="fitXY"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                />
+                <ImageView
+                    android:id="@+id/profilePicShow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/avatar"
+                    app:layout_constraintDimensionRatio="1:1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -40,7 +50,18 @@
         layout="@layout/initial_login_profile_setup_content_scrolling" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editProfilePic"
+        android:id="@+id/editProfilePicCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_200"
+        app:layout_anchor="@id/app_bar"
+        android:layout_marginEnd="95dp"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/editProfilePicGallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_margin"
@@ -48,6 +69,15 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:id="@+id/recyclerView"
+        tools:listitem="@layout/image_item"/>
+
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/finalizeProfile"

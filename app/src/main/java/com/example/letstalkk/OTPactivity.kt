@@ -9,9 +9,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.gms.common.internal.Objects.ToStringHelper
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider
 
@@ -69,8 +66,8 @@ class OTPactivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("Succesfully Signed In", "signInWithCredential:success")
-                    val intent = Intent(this@OTPactivity,initialLoginProfileSetup::class.java)
+                    Log.d("Successfully Signed In", "signInWithCredential:success")
+                    val intent = Intent(this@OTPactivity,InitialLoginProfileSetup::class.java)
                     Toast.makeText(this@OTPactivity,"Logged in Successfully !",Toast.LENGTH_LONG).show()
                     startActivity(intent)
 

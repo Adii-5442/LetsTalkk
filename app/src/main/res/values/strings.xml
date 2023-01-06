@@ -5,8 +5,11 @@
     <string name="title_activity_initial_login_profile_setup">initialLoginProfileSetup</string>
     <string name="selected_item">Selected item:</string>
     <string name="large_text">LARGE</string>
+    <string name="dateFormat">dd/MM/yyyy</string>
 
+    <!-- Gender array for Spinner-->
     <string-array name="Genders">
+        <item>--Select--</item>
         <item>Male</item>
         <item>Female</item>
         <item>Non-Binary</item>
