@@ -46,7 +46,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.github.criminact:OTPView:1.0.1'
     implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx'
-    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'// kotlin
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-database:20.1.0'// kotlin
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
