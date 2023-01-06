@@ -8,7 +8,7 @@ class UserData(
     dateOfBirth:Calendar,
     gender:String,
     mobileNumber:String,
-    about:String,
+    aboutUser:String,
     profilePic:Uri,
 ) {
 
