@@ -2,7 +2,7 @@
     <string name="app_name">LetsTalkk</string>
     <string name="title_activity_edit_profile">EditProfile</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_initial_login_profile_setup">initialLoginProfileSetup</string>
+    <string name="title_activity_initial_login_profile_setup">InitialLoginProfileSetup</string>
     <string name="selected_item">Selected item:</string>
     <string name="large_text">LARGE</string>
     <string name="dateFormat">dd/MM/yyyy</string>
