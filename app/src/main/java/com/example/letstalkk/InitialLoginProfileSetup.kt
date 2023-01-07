@@ -1,5 +1,6 @@
 package com.example.letstalkk
 
+import UserData
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Spinner
@@ -9,13 +10,19 @@ import android.view.View
 import android.widget.*
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.net.Uri
+import android.os.Environment
 import java.text.SimpleDateFormat
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
+import java.io.File
 import java.util.*
+import kotlin.collections.HashMap
 
 class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionCallbacks {
 
@@ -29,9 +36,12 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
     private lateinit var profilePicCameraButton:FloatingActionButton
     private lateinit var profilePicDisplay: ImageView
     private lateinit var finalButton : ExtendedFloatingActionButton
+    private lateinit var number: String
+    private lateinit var uniqueId:String
 
     private var selectedDate : Calendar = Calendar.getInstance()
     private lateinit var selectedGender:String
+    private var profilePic:Uri?= null
 
     //Function to update button to display the chosen birth date by the user
     private fun updateDateInView() {
@@ -60,6 +70,8 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         profilePicDisplay=findViewById(R.id.profilePicShow)
 
         finalButton=findViewById(R.id.finalizeProfile)
+ //       number=intent.getStringExtra("Number")!!
+ //       uniqueId=intent.getStringExtra("UID")!!
 
 
         //Pre defined Variables
@@ -165,6 +177,23 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                 return@setOnClickListener
 
             //Rest of the code
+
+            var db = Firebase.firestore
+            val hash:HashMap<String,Any?> = UserData(
+                fullName.text.toString().trim(),
+                userName.text.toString().trim(),
+                eMail.text.toString().trim(),
+                selectedDate,
+                selectedGender,
+                "number",
+                "",
+                profilePic,
+            ).toHashMap()
+
+            db.collection("users").document().set(hash)
+                .addOnSuccessListener{
+                    Toast.makeText(this,"Data Uploaded",Toast.LENGTH_SHORT).show()
+                }
         }
     }
 
@@ -189,11 +218,11 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-        if (requestCode==100){
+        if (requestCode==101){
             //Means permission has been granted for gallery
             pickImageFromGallery()
         }
-        else if (requestCode==101){
+        else if (requestCode==100){
             //Means permission has been granted for camera
             pickImageFromCamera()
         }
@@ -214,6 +243,7 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode== RESULT_OK&&data!=null){
                 profilePicDisplay.setImageURI(data.data)
+                profilePic=data.data
         }
     }
 }

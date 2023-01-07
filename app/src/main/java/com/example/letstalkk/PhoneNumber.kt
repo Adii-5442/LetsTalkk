@@ -10,6 +10,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.TimeUnit
 
 
@@ -129,7 +132,7 @@ class PhoneNumber : AppCompatActivity() {
     }
 
     override fun onStart() {
-        super.onStart()
+      super.onStart()
         if (auth.currentUser != null){
             startActivity(Intent(this , MainActivity::class.java))
         }
