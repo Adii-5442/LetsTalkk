@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class OTPactivity : AppCompatActivity() {
 
@@ -66,11 +68,31 @@ class OTPactivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d("Successfully Signed In", "signInWithCredential:success")
-                    val intent = Intent(this@OTPactivity,InitialLoginProfileSetup::class.java)
-                    Toast.makeText(this@OTPactivity,"Logged in Successfully !",Toast.LENGTH_LONG).show()
-                    startActivity(intent)
-
+                    var id:String = if (auth.uid==null){
+                        ""
+                    } else {
+                        auth.uid.toString()
+                    }
+                     Firebase.firestore.collection("users").document("$id").get()
+                         .addOnCompleteListener{task->
+                             if(task.isSuccessful){
+                                 val document = task.result
+                                 if(document.exists()){
+                                     startActivity(Intent(this , MainActivity::class.java))
+                                 }
+                                 else{
+                                     Log.d("Successfully Signed In", "signInWithCredential:success")
+                                     val intent = Intent(this , InitialLoginProfileSetup::class.java)
+                                     Toast.makeText(this@OTPactivity,"Logged in Successfully !",Toast.LENGTH_LONG).show()
+                                     intent.putExtra("Number",phoneNumber)
+                                     intent.putExtra("UID",id)
+                                     startActivity(intent)
+                                 }
+                             }
+                             else {
+                                 //Error Exception
+                             }
+                         }
 
                     val user = task.result?.user
                 } else {

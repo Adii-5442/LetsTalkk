@@ -70,8 +70,8 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
         profilePicDisplay=findViewById(R.id.profilePicShow)
 
         finalButton=findViewById(R.id.finalizeProfile)
- //       number=intent.getStringExtra("Number")!!
- //       uniqueId=intent.getStringExtra("UID")!!
+        number=intent.getStringExtra("Number")!!
+        uniqueId=intent.getStringExtra("UID")!!
 
 
         //Pre defined Variables
@@ -185,12 +185,12 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
                 eMail.text.toString().trim(),
                 selectedDate,
                 selectedGender,
-                "number",
+                number,
                 "",
                 profilePic,
             ).toHashMap()
 
-            db.collection("users").document().set(hash)
+            db.collection("users").document(uniqueId).set(hash)
                 .addOnSuccessListener{
                     Toast.makeText(this,"Data Uploaded",Toast.LENGTH_SHORT).show()
                 }
