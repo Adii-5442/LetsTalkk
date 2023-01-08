@@ -29,7 +29,8 @@ class PhoneNumber : AppCompatActivity() {
         setContentView(R.layout.activity_phone_number)
 
         init()
-        Log.d("Number","$phoneNumber")
+        Log.d("Number","${auth.currentUser!!.phoneNumber}")
+
         proceedPhone.setOnClickListener {
             number = phoneNumber.text?.trim().toString()
             if(number.isNotEmpty()){
@@ -130,11 +131,36 @@ class PhoneNumber : AppCompatActivity() {
             // Save verification ID and resending token so we can use them later
         }
     }
-
     override fun onStart() {
       super.onStart()
         if (auth.currentUser != null){
-            startActivity(Intent(this , MainActivity::class.java))
+            var id:String = if (auth.uid==null){
+                ""
+            } else {
+                auth.uid.toString()
+            }
+            Firebase.firestore.collection("users").document("$id").get()
+                .addOnCompleteListener{task->
+                    if(task.isSuccessful){
+                        val document = task.result
+                        if(document.exists()){
+                            startActivity(Intent(this , MainActivity::class.java))
+                        }
+                        else{
+                            val currNumber= auth.currentUser!!.phoneNumber.toString()
+                            Log.d("Successfully Signed In", "signInWithCredential:success")
+                            val intent = Intent(this , InitialLoginProfileSetup::class.java)
+                            Toast.makeText(this@PhoneNumber,"Logged in Successfully !",Toast.LENGTH_LONG).show()
+                            intent.putExtra("Number", currNumber)
+                            intent.putExtra("UID",id)
+                            startActivity(intent)
+                        }
+                    }
+                    else {
+                        //Error Exception
+                    }
+                }
+            //startActivity(Intent(this , MainActivity::class.java))
         }
     }
 

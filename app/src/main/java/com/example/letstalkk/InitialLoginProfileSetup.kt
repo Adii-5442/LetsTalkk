@@ -12,6 +12,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Environment
+import androidx.core.graphics.PathUtils
 import java.text.SimpleDateFormat
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -193,6 +194,7 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
             db.collection("users").document(uniqueId).set(hash)
                 .addOnSuccessListener{
                     Toast.makeText(this,"Data Uploaded",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,MainActivity::class.java))
                 }
         }
     }
@@ -200,11 +202,11 @@ class InitialLoginProfileSetup : AppCompatActivity(),EasyPermissions.PermissionC
 
 
     private fun pickImageFromGallery(){
-        ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).crop().maxResultSize(400,400).start()
+        ImagePicker.with(this).galleryOnly().galleryMimeTypes(arrayOf("image/*")).crop().maxResultSize(400,400).saveDir(getExternalFilesDir("ImagePicker")!!).start()
     }
 
     private fun pickImageFromCamera(){
-        ImagePicker.with(this).cameraOnly().crop().start()
+        ImagePicker.with(this).cameraOnly().crop().saveDir(getExternalFilesDir("ImagePicker")!!).start()
     }
 
     override fun onRequestPermissionsResult(
